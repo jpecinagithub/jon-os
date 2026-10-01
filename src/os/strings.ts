@@ -138,7 +138,6 @@ const es: Dict = {
       { slug: 'tsla', name: 'TSLA Trading Agent', desc: 'Sistema de trading algorítmico con backtesting y optimizador de parámetros.', stack: 'Python · REST · WebSocket · trading algorítmico · análisis cuantitativo' },
       { slug: 'erp3', name: 'ERP Enterprise', desc: 'Sistema empresarial completo con 20 módulos y API REST segura.', stack: 'React · Vite · REST API · token auth · i18n' },
       { slug: 'neon-escape', name: 'NEON ESCAPE', desc: 'Juego arcade de conducción 3D en un mundo synthwave, sin backend.', stack: 'Vite · React · Three.js · JavaScript · Web Audio · Gamepad API' },
-      { slug: 'pixel-quest', name: 'PIXEL QUEST: The Lost Kingdom', desc: 'Plataformas 2D/2.5D con IP 100% original para navegador.', stack: 'Vite · React · JavaScript · Canvas · Web Audio · Gamepad API' },
     ],
     howIWork: 'Responsabilidad end-to-end (front, back, testing, DevOps — sin traspasos); acelerado por IA, con verificación primero — revisado y probado antes de publicar.',
     edu: [
@@ -356,7 +355,6 @@ const en: Dict = {
       { slug: 'tsla', name: 'TSLA Trading Agent', desc: 'Algorithmic trading system with backtesting and a parameter optimizer.', stack: 'Python · REST · WebSocket · algorithmic trading · quantitative analytics' },
       { slug: 'erp3', name: 'ERP Enterprise', desc: 'Complete business system with 20 modules and a secure REST API.', stack: 'React · Vite · REST API · token auth · i18n' },
       { slug: 'neon-escape', name: 'NEON ESCAPE', desc: 'No-backend 3D arcade driving game in a synthwave world.', stack: 'Vite · React · Three.js · JavaScript · Web Audio · Gamepad API' },
-      { slug: 'pixel-quest', name: 'PIXEL QUEST: The Lost Kingdom', desc: 'Original-IP 2D/2.5D browser platformer.', stack: 'Vite · React · JavaScript · Canvas · Web Audio · Gamepad API' },
     ],
     howIWork: 'End-to-end ownership (front, back, testing, DevOps — no handoffs); AI-accelerated, verification-first — reviewed and tested before shipping.',
     edu: [

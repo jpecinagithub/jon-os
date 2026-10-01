@@ -136,7 +136,7 @@ const es: Dict = {
     featured: [
       { slug: 'futbol3d', name: 'Fútbol 3D', desc: 'Simulador de partidos 11 contra 11 en 3D a tiempo real.', stack: 'Three.js · JavaScript · 3D en tiempo real · WebGL' },
       { slug: 'tsla', name: 'TSLA Trading Agent', desc: 'Sistema de trading algorítmico con backtesting y optimizador de parámetros.', stack: 'Python · REST · WebSocket · trading algorítmico · análisis cuantitativo' },
-      { slug: 'erp3', name: 'ERP Enterprise', desc: 'Sistema empresarial completo con 20 módulos y API REST segura.', stack: 'React · Vite · REST API · token auth · i18n' },
+      { slug: 'accounting-academy', name: 'Accounting Standards Academy', desc: 'Portal de aprendizaje de NIIF e informes financieros: 40 módulos, 393 preguntas y simuladores.', stack: 'React · Vite · TypeScript · localStorage' },
       { slug: 'neon-escape', name: 'NEON ESCAPE', desc: 'Juego arcade de conducción 3D en un mundo synthwave, sin backend.', stack: 'Vite · React · Three.js · JavaScript · Web Audio · Gamepad API' },
     ],
     howIWork: 'Responsabilidad end-to-end (front, back, testing, DevOps — sin traspasos); acelerado por IA, con verificación primero — revisado y probado antes de publicar.',
@@ -353,7 +353,7 @@ const en: Dict = {
     featured: [
       { slug: 'futbol3d', name: 'Fútbol 3D', desc: 'Real-time 11-vs-11 3D football simulator.', stack: 'Three.js · JavaScript · real-time 3D · WebGL' },
       { slug: 'tsla', name: 'TSLA Trading Agent', desc: 'Algorithmic trading system with backtesting and a parameter optimizer.', stack: 'Python · REST · WebSocket · algorithmic trading · quantitative analytics' },
-      { slug: 'erp3', name: 'ERP Enterprise', desc: 'Complete business system with 20 modules and a secure REST API.', stack: 'React · Vite · REST API · token auth · i18n' },
+      { slug: 'accounting-academy', name: 'Accounting Standards Academy', desc: 'IFRS & financial reporting learning portal: 40 modules, 393 questions and simulators.', stack: 'React · Vite · TypeScript · localStorage' },
       { slug: 'neon-escape', name: 'NEON ESCAPE', desc: 'No-backend 3D arcade driving game in a synthwave world.', stack: 'Vite · React · Three.js · JavaScript · Web Audio · Gamepad API' },
     ],
     howIWork: 'End-to-end ownership (front, back, testing, DevOps — no handoffs); AI-accelerated, verification-first — reviewed and tested before shipping.',

@@ -277,7 +277,7 @@ function StartMenu() {
     return name.includes(q.trim().toLowerCase());
   });
   return (
-    <div className="jos-start">
+    <div className="jos-start" onPointerDown={(e) => e.stopPropagation()}>
       <input
         className="jos-input"
         placeholder={t('start.search')}

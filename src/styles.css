@@ -1,0 +1,654 @@
+/* ============================================================
+   JON OS v1.0 — design system
+   Dark premium OS aesthetic. All original.
+   Accent / theme / UI-size are driven by CSS variables set
+   on <html> from the Settings app (persisted in localStorage).
+   System font stack only — zero external requests.
+   ============================================================ */
+
+:root {
+  --accent: #2dd4bf;
+  --accent-rgb: 45, 212, 191;
+  --accent-ink: #04211d;
+  --bg-deep: #05080f;
+  --win-bg: rgba(13, 20, 32, 0.82);
+  --win-border: rgba(255, 255, 255, 0.09);
+  --text: #e8eef4;
+  --text-dim: #9aa7b5;
+  --text-faint: #5d6b7a;
+  --card: rgba(255, 255, 255, 0.045);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --input-bg: rgba(0, 0, 0, 0.35);
+  --shadow-win: 0 24px 70px rgba(0, 0, 0, 0.55), 0 4px 18px rgba(0, 0, 0, 0.4);
+  --radius: 14px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --fs: 15px;
+}
+
+html[data-theme="light"] {
+  --bg-deep: #dfe7ee;
+  --win-bg: rgba(248, 250, 252, 0.88);
+  --win-border: rgba(15, 23, 42, 0.1);
+  --text: #0f1b28;
+  --text-dim: #46566a;
+  --text-faint: #7b8a9c;
+  --card: rgba(15, 27, 40, 0.045);
+  --card-border: rgba(15, 27, 40, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.7);
+  --shadow-win: 0 24px 70px rgba(15, 27, 40, 0.25), 0 4px 18px rgba(15, 27, 40, 0.12);
+  --accent-ink: #ffffff;
+}
+
+html[data-uisize="large"] {
+  --fs: 17px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--fs);
+  background: var(--bg-deep);
+  color: var(--text);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+::selection { background: rgba(var(--accent-rgb), 0.35); }
+
+/* ---------- scrollbars ---------- */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+html[data-theme="light"] *::-webkit-scrollbar-thumb { background: rgba(15,27,40,0.18); border: 2px solid transparent; background-clip: content-box; }
+
+/* ---------- generic primitives ---------- */
+.jos-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.jos-btn:hover { transform: translateY(-1px); border-color: rgba(var(--accent-rgb), 0.5); }
+.jos-btn:active { transform: translateY(0); }
+.jos-btn.primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--accent-ink);
+  box-shadow: 0 6px 22px rgba(var(--accent-rgb), 0.35);
+}
+.jos-btn.primary:hover { box-shadow: 0 8px 28px rgba(var(--accent-rgb), 0.5); }
+.jos-btn.small { padding: 6px 13px; font-size: 0.86em; }
+
+.jos-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.28);
+  color: var(--text);
+  font-size: 0.8em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.jos-chip.plain {
+  background: var(--card);
+  border-color: var(--card-border);
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.jos-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.jos-input, .jos-textarea, .jos-select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  user-select: text;
+}
+.jos-input:focus, .jos-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18);
+}
+.jos-textarea { resize: vertical; min-height: 110px; }
+
+.jos-h { margin: 0 0 6px; font-size: 1.35em; letter-spacing: -0.01em; }
+.jos-sub { color: var(--text-dim); margin: 0 0 16px; line-height: 1.5; }
+.jos-section-label {
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 22px 0 10px;
+}
+
+/* ---------- boot ---------- */
+.jos-boot {
+  position: fixed; inset: 0; z-index: 200;
+  background: radial-gradient(1200px 700px at 50% 30%, #0a1626 0%, #05080f 70%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 26px; color: var(--text);
+}
+.jos-boot-logo {
+  font-size: 3em; font-weight: 800; letter-spacing: 0.06em;
+  background: linear-gradient(135deg, #fff, var(--accent));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.jos-boot-bar { width: min(320px, 70vw); height: 5px; border-radius: 99px; background: rgba(255,255,255,0.1); overflow: hidden; }
+.jos-boot-bar > div { height: 100%; width: 0%; background: var(--accent); border-radius: 99px; transition: width 0.18s linear; box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.8); }
+.jos-boot-msg { color: var(--text-dim); font-size: 0.9em; min-height: 1.4em; }
+
+/* ---------- lock screen ---------- */
+.jos-lock {
+  position: fixed; inset: 0; z-index: 150;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; text-align: center; padding: 24px;
+}
+.jos-lock-clock { position: relative; z-index: 1; font-size: clamp(4em, 14vw, 7.5em); font-weight: 200; letter-spacing: -0.03em; line-height: 1; text-shadow: 0 4px 40px rgba(0,0,0,0.5); }
+.jos-lock-date { position: relative; z-index: 1; font-size: 1.25em; color: var(--text-dim); font-weight: 500; margin-bottom: 26px; }
+.jos-lock-actions { position: relative; z-index: 1; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.jos-lock-hint { position: relative; z-index: 1; margin-top: 22px; color: var(--text-faint); font-size: 0.85em; }
+.jos-lock-lang {
+  position: absolute; top: 22px; right: 22px;
+}
+
+/* ---------- desktop ---------- */
+.jos-desktop { position: fixed; inset: 0; overflow: hidden; }
+.jos-wallpaper { position: absolute; inset: 0; pointer-events: none; }
+.jos-wallpaper canvas { width: 100%; height: 100%; display: block; }
+
+.jos-icons {
+  position: absolute; top: 18px; left: 18px; z-index: 5;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.jos-icon {
+  width: 92px; padding: 10px 6px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  background: transparent; border: 1px solid transparent; border-radius: 12px;
+  cursor: pointer; color: var(--text);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+}
+.jos-icon:hover { background: rgba(255,255,255,0.07); }
+.jos-icon:active { transform: scale(0.96); }
+.jos-icon:focus-visible { outline: 2px solid var(--accent); }
+.jos-icon-glyph {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.85), rgba(var(--accent-rgb), 0.35));
+  box-shadow: 0 8px 22px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.35);
+  color: #04110e;
+}
+html[data-theme="light"] .jos-icon-glyph { color: #fff; }
+.jos-icon-glyph svg { width: 26px; height: 26px; }
+.jos-icon-label { font-size: 0.78em; font-weight: 600; text-align: center; line-height: 1.25; text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
+
+/* ---------- windows ---------- */
+.jos-win {
+  position: absolute; z-index: 10;
+  display: flex; flex-direction: column;
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-win);
+  backdrop-filter: blur(22px) saturate(1.3);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  overflow: hidden;
+  animation: jos-win-in 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+@keyframes jos-win-in {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.jos-win.minimizing { animation: jos-win-out 0.18s ease forwards; pointer-events: none; }
+@keyframes jos-win-out {
+  to { opacity: 0; transform: scale(0.92) translateY(26px); }
+}
+.jos-win.maximized { border-radius: 0; animation: none; }
+.jos-titlebar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 8px 10px 16px;
+  cursor: grab;
+  border-bottom: 1px solid var(--card-border);
+  flex: 0 0 auto;
+  touch-action: none;
+}
+.jos-titlebar:active { cursor: grabbing; }
+.jos-titlebar-title { font-weight: 700; font-size: 0.92em; display: flex; align-items: center; gap: 9px; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jos-titlebar-title svg { width: 17px; height: 17px; color: var(--accent); flex: 0 0 auto; }
+.jos-winbtns { display: flex; gap: 2px; }
+.jos-winbtn {
+  width: 38px; height: 30px; border: 0; border-radius: 8px; background: transparent;
+  color: var(--text-dim); cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.jos-winbtn:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+.jos-winbtn.close:hover { background: #e5484d; color: #fff; }
+.jos-winbtn svg { width: 15px; height: 15px; }
+.jos-winbody { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 20px; user-select: text; }
+.jos-winbody.nopad { padding: 0; }
+
+/* ---------- taskbar ---------- */
+.jos-taskbar {
+  position: absolute; z-index: 100;
+  left: 50%; transform: translateX(-50%); bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px;
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  border-radius: 18px;
+  box-shadow: var(--shadow-win);
+  backdrop-filter: blur(22px) saturate(1.3);
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  max-width: calc(100vw - 16px);
+}
+.jos-tb-btn {
+  position: relative;
+  width: 46px; height: 46px; border-radius: 13px; border: 1px solid transparent;
+  background: transparent; color: var(--text-dim); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+}
+.jos-tb-btn:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+.jos-tb-btn:active { transform: scale(0.92); }
+.jos-tb-btn svg { width: 22px; height: 22px; }
+.jos-tb-btn.active { background: rgba(var(--accent-rgb), 0.16); color: var(--accent); }
+.jos-tb-btn.active::after {
+  content: ""; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%);
+  width: 16px; height: 3px; border-radius: 99px; background: var(--accent);
+}
+.jos-tb-sep { width: 1px; height: 30px; background: var(--card-border); }
+.jos-tray {
+  display: flex; align-items: center; gap: 2px;
+  padding-left: 6px;
+}
+.jos-tray-clock { text-align: right; line-height: 1.25; padding: 0 8px; font-variant-numeric: tabular-nums; }
+.jos-tray-clock .t { font-weight: 700; font-size: 0.9em; }
+.jos-tray-clock .d { font-size: 0.72em; color: var(--text-dim); }
+.jos-tray-btn {
+  min-width: 40px; height: 40px; padding: 0 8px; border-radius: 11px; border: 0;
+  background: transparent; color: var(--text-dim); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-weight: 700; font-size: 0.82em;
+}
+.jos-tray-btn:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+.jos-accent-dot { width: 15px; height: 15px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.7); }
+
+/* ---------- start menu ---------- */
+.jos-start {
+  position: absolute; z-index: 101;
+  left: 50%; transform: translateX(-50%); bottom: 74px;
+  width: min(430px, calc(100vw - 24px));
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-win);
+  backdrop-filter: blur(26px) saturate(1.3);
+  -webkit-backdrop-filter: blur(26px) saturate(1.3);
+  padding: 16px;
+  animation: jos-start-in 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.15);
+}
+@keyframes jos-start-in { from { opacity: 0; transform: translateX(-50%) translateY(14px) scale(0.97); } }
+.jos-start-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px; }
+.jos-start-app {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 14px 6px 10px; border-radius: 14px; border: 0; background: transparent;
+  color: var(--text); cursor: pointer; font-size: 0.76em; font-weight: 600;
+}
+.jos-start-app:hover { background: rgba(255,255,255,0.07); }
+.jos-start-app .g {
+  width: 46px; height: 46px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.85), rgba(var(--accent-rgb), 0.35));
+  color: #04110e;
+}
+html[data-theme="light"] .jos-start-app .g { color: #fff; }
+.jos-start-app .g svg { width: 23px; height: 23px; }
+.jos-start-footer { display: flex; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--card-border); }
+
+/* ---------- toasts ---------- */
+.jos-toasts { position: absolute; z-index: 120; right: 16px; bottom: 74px; display: flex; flex-direction: column; gap: 10px; max-width: min(340px, calc(100vw - 32px)); }
+.jos-toast {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--win-bg); border: 1px solid var(--win-border); border-radius: 14px;
+  padding: 12px 16px; box-shadow: var(--shadow-win);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  animation: jos-toast-in 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+@keyframes jos-toast-in { from { opacity: 0; transform: translateX(40px); } }
+.jos-toast.leaving { opacity: 0; transform: translateX(40px); transition: all 0.25s ease; }
+.jos-toast-xp {
+  font-weight: 800; color: var(--accent); font-size: 0.95em; white-space: nowrap;
+  text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5);
+}
+.jos-toast-msg { font-size: 0.88em; color: var(--text); }
+
+/* ---------- about app ---------- */
+.jos-about-hero { display: flex; gap: 18px; align-items: center; margin-bottom: 6px; }
+.jos-avatar {
+  width: 84px; height: 84px; border-radius: 50%; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.9em; font-weight: 800; letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+  color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  border: 3px solid rgba(var(--accent-rgb), 0.5);
+  box-shadow: 0 8px 26px rgba(var(--accent-rgb), 0.35);
+}
+.jos-about-name { margin: 0; font-size: 1.6em; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.jos-about-role { color: var(--accent); font-weight: 700; margin: 4px 0; }
+.jos-about-loc { color: var(--text-dim); font-size: 0.9em; margin: 0 0 12px; }
+.jos-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 0.72em; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+  background: rgba(52, 211, 153, 0.14); border: 1px solid rgba(52, 211, 153, 0.4); color: #34d399;
+}
+.jos-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 8px #34d399; animation: jos-pulse 1.8s infinite; }
+@keyframes jos-pulse { 50% { opacity: 0.4; } }
+.jos-about-bio { line-height: 1.65; color: var(--text-dim); margin: 12px 0 4px; }
+.jos-about-bio strong { color: var(--text); }
+.jos-spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 12px; }
+.jos-spec h4 { margin: 0 0 6px; font-size: 0.98em; display: flex; align-items: center; gap: 8px; }
+.jos-spec h4 svg { width: 18px; height: 18px; color: var(--accent); }
+.jos-spec p { margin: 0 0 10px; color: var(--text-dim); font-size: 0.88em; line-height: 1.55; }
+.jos-spec .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.jos-about-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.jos-elsewhere { display: flex; gap: 10px; align-items: center; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--card-border); flex-wrap: wrap; }
+.jos-elsewhere .lbl { font-size: 0.72em; letter-spacing: 0.14em; color: var(--text-faint); font-weight: 700; }
+.jos-soc {
+  width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--card-border);
+  background: var(--card); color: var(--text-dim); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease;
+}
+.jos-soc:hover { color: var(--accent); border-color: rgba(var(--accent-rgb), 0.5); transform: translateY(-2px); }
+.jos-soc svg { width: 19px; height: 19px; }
+.jos-email-row { display: flex; align-items: center; gap: 8px; background: var(--input-bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 6px 6px 6px 16px; font-size: 0.88em; }
+.jos-email-row button { border: 0; background: rgba(var(--accent-rgb), 0.15); color: var(--accent); border-radius: 999px; padding: 7px 14px; cursor: pointer; font-weight: 700; font-size: 0.85em; }
+.jos-email-row button:hover { background: rgba(var(--accent-rgb), 0.28); }
+
+/* ---------- projects app ---------- */
+.jos-proj-search { position: sticky; top: 0; z-index: 2; padding-bottom: 12px; background: linear-gradient(var(--win-bg) 80%, transparent); }
+.jos-proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+.jos-proj-card {
+  background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius);
+  overflow: hidden; cursor: pointer; transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  text-align: left; padding: 0; color: var(--text); display: flex; flex-direction: column;
+}
+.jos-proj-card:hover { transform: translateY(-3px); border-color: rgba(var(--accent-rgb), 0.45); box-shadow: 0 14px 34px rgba(0,0,0,0.35); }
+.jos-proj-shot { position: relative; aspect-ratio: 16 / 9.5; background: #0a0f18; overflow: hidden; }
+.jos-proj-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.jos-proj-star {
+  position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.45); color: #fff;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.jos-proj-star svg { width: 16px; height: 16px; }
+.jos-proj-star.on { color: #fbbf24; border-color: rgba(251,191,36,0.6); }
+.jos-proj-star.on svg { fill: #fbbf24; }
+.jos-proj-info { padding: 12px 14px 14px; }
+.jos-proj-info h4 { margin: 0 0 4px; font-size: 0.98em; display: flex; align-items: center; gap: 7px; }
+.jos-proj-info h4 svg { width: 14px; height: 14px; color: var(--accent); flex: 0 0 auto; }
+.jos-proj-info p { margin: 0; color: var(--text-dim); font-size: 0.84em; line-height: 1.5; }
+.jos-status { font-size: 0.72em; font-weight: 700; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.04em; }
+.jos-status.shipped { background: rgba(52,211,153,0.14); color: #34d399; border: 1px solid rgba(52,211,153,0.35); }
+.jos-status.code { background: rgba(96,165,250,0.14); color: #60a5fa; border: 1px solid rgba(96,165,250,0.35); }
+
+/* browser chrome for case study */
+.jos-browser { display: flex; flex-direction: column; height: 100%; }
+.jos-chrome-tabs { display: flex; align-items: center; gap: 6px; padding: 8px 12px 0; }
+.jos-chrome-tab {
+  display: flex; align-items: center; gap: 8px; padding: 8px 14px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--card-border); border-bottom: 0;
+  border-radius: 10px 10px 0 0; font-size: 0.82em; font-weight: 600; max-width: 260px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.jos-chrome-urlbar {
+  display: flex; align-items: center; gap: 8px; margin: 0 12px;
+  background: var(--input-bg); border: 1px solid var(--card-border);
+  border-radius: 999px; padding: 8px 16px; font-size: 0.84em; color: var(--text-dim);
+}
+.jos-chrome-urlbar svg { width: 14px; height: 14px; color: #34d399; flex: 0 0 auto; }
+.jos-chrome-urlbar span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jos-case-body { padding: 20px; overflow-y: auto; }
+.jos-carousel { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--card-border); background: #0a0f18; margin-bottom: 18px; }
+.jos-carousel img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.jos-carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.5); color: #fff; cursor: pointer; font-size: 1.1em;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.jos-carousel-btn:hover { background: rgba(0,0,0,0.75); }
+.jos-carousel-btn.prev { left: 12px; } .jos-carousel-btn.next { right: 12px; }
+.jos-carousel-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
+.jos-carousel-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+.jos-carousel-dots i.on { background: var(--accent); }
+.jos-case-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 10px 0 4px; color: var(--text-dim); font-size: 0.88em; }
+.jos-case-sec { font-size: 0.75em; font-weight: 800; letter-spacing: 0.12em; color: var(--accent); margin: 20px 0 8px; text-transform: uppercase; }
+.jos-case-list { margin: 0; padding-left: 20px; color: var(--text-dim); line-height: 1.7; }
+.jos-case-list li::marker { color: var(--accent); }
+.jos-case-outcome { background: rgba(var(--accent-rgb), 0.08); border: 1px solid rgba(var(--accent-rgb), 0.25); border-radius: 12px; padding: 14px 16px; color: var(--text); line-height: 1.6; }
+.jos-case-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
+.jos-next-proj { display: flex; justify-content: flex-end; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--card-border); }
+
+/* ---------- resume ---------- */
+.jos-tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.jos-tab {
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--card-border);
+  background: transparent; color: var(--text-dim); cursor: pointer; font-weight: 600; font-size: 0.88em;
+}
+.jos-tab.on { background: rgba(var(--accent-rgb), 0.15); border-color: rgba(var(--accent-rgb), 0.5); color: var(--accent); }
+.jos-timeline { position: relative; padding-left: 26px; }
+.jos-timeline::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), transparent); border-radius: 2px; }
+.jos-tl-item { position: relative; margin-bottom: 20px; }
+.jos-tl-item::before {
+  content: ""; position: absolute; left: -24px; top: 5px; width: 12px; height: 12px;
+  border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.7);
+}
+.jos-tl-item h4 { margin: 0 0 2px; font-size: 1.02em; }
+.jos-tl-item .where { color: var(--accent); font-weight: 600; font-size: 0.88em; }
+.jos-tl-item .when { color: var(--text-faint); font-size: 0.82em; margin: 2px 0 8px; }
+.jos-tl-item p { margin: 0; color: var(--text-dim); line-height: 1.6; font-size: 0.92em; }
+.jos-skillgroup { margin-bottom: 18px; }
+.jos-skillgroup h4 { margin: 0 0 8px; font-size: 0.95em; }
+.jos-skill { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.9em; }
+.jos-skill .nm { width: 150px; flex: 0 0 auto; color: var(--text-dim); }
+.jos-skill .bar { flex: 1; height: 7px; border-radius: 99px; background: rgba(255,255,255,0.09); overflow: hidden; }
+.jos-skill .bar > div { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), rgba(var(--accent-rgb), 0.55)); }
+.jos-skill .lv { width: 110px; flex: 0 0 auto; text-align: right; font-size: 0.8em; color: var(--text-faint); }
+.jos-edu { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+.jos-edu .ic { width: 44px; height: 44px; border-radius: 12px; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; background: rgba(var(--accent-rgb), 0.14); color: var(--accent); }
+.jos-edu .ic svg { width: 22px; height: 22px; }
+.jos-edu h4 { margin: 0 0 2px; font-size: 0.98em; }
+.jos-edu p { margin: 0; color: var(--text-dim); font-size: 0.88em; }
+.jos-lang-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 4px; border-bottom: 1px solid var(--card-border); }
+.jos-avail { margin-top: 18px; padding: 14px 16px; border-radius: 12px; background: rgba(var(--accent-rgb), 0.08); border: 1px solid rgba(var(--accent-rgb), 0.25); font-size: 0.9em; line-height: 1.6; }
+
+/* ---------- contact ---------- */
+.jos-subj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 10px 0 18px; }
+.jos-subj {
+  border: 1px solid var(--card-border); background: var(--card); border-radius: 12px;
+  padding: 14px 10px; cursor: pointer; color: var(--text); text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  transition: all 0.15s ease;
+}
+.jos-subj svg { width: 22px; height: 22px; color: var(--text-dim); }
+.jos-subj b { font-size: 0.88em; }
+.jos-subj small { color: var(--text-faint); font-size: 0.76em; }
+.jos-subj.on { border-color: var(--accent); background: rgba(var(--accent-rgb), 0.1); box-shadow: 0 0 0 1px var(--accent); }
+.jos-subj.on svg { color: var(--accent); }
+.jos-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.jos-field { margin-bottom: 14px; }
+.jos-field label { display: block; font-weight: 600; font-size: 0.86em; margin-bottom: 6px; }
+.jos-field label .req { color: #e5484d; }
+.jos-char { text-align: right; font-size: 0.76em; color: var(--text-faint); margin-top: 4px; }
+.jos-honeypot { position: absolute; left: -9999px; top: -9999px; opacity: 0; height: 0; width: 0; }
+
+/* ---------- terminal ---------- */
+.jos-term {
+  background: rgba(2, 6, 10, 0.92); border-radius: 10px; padding: 14px 16px;
+  font-family: var(--mono); font-size: 0.86em; line-height: 1.65;
+  height: 100%; min-height: 320px; overflow-y: auto; cursor: text; user-select: text;
+}
+html[data-theme="light"] .jos-term { background: rgba(10, 16, 24, 0.94); }
+.jos-term .p { color: #34d399; }
+.jos-term .p .u { color: var(--accent); font-weight: 700; }
+.jos-term .out { color: #c9d4de; white-space: pre-wrap; word-break: break-word; }
+.jos-term .out .hl { color: var(--accent); font-weight: 700; }
+.jos-term .out .dim { color: #6b7a89; }
+.jos-term .err { color: #f87171; }
+.jos-term-inputrow { display: flex; align-items: center; }
+.jos-term-input {
+  flex: 1; background: transparent; border: 0; outline: 0; color: #e8eef4;
+  font-family: var(--mono); font-size: 1em; caret-color: var(--accent); padding: 0;
+}
+.jos-caret { display: inline-block; width: 9px; height: 1.1em; background: var(--accent); vertical-align: -2px; animation: jos-blink 1s steps(1) infinite; }
+@keyframes jos-blink { 50% { opacity: 0; } }
+
+/* ---------- achievements ---------- */
+.jos-level { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.jos-level-num {
+  width: 64px; height: 64px; border-radius: 18px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5em; font-weight: 800; color: var(--accent-ink); background: var(--accent);
+  box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.4);
+}
+.jos-level-info { flex: 1; }
+.jos-level-info h3 { margin: 0 0 6px; }
+.jos-xpbar { height: 10px; border-radius: 99px; background: rgba(255,255,255,0.09); overflow: hidden; }
+.jos-xpbar > div { height: 100%; background: linear-gradient(90deg, var(--accent), rgba(var(--accent-rgb), 0.5)); border-radius: 99px; transition: width 0.5s ease; }
+.jos-xpbar-lbl { font-size: 0.8em; color: var(--text-dim); margin-top: 5px; }
+.jos-ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.jos-ach {
+  display: flex; gap: 12px; align-items: flex-start; padding: 13px 14px;
+  border-radius: 12px; border: 1px solid var(--card-border); background: var(--card);
+}
+.jos-ach.locked { opacity: 0.45; filter: grayscale(0.7); }
+.jos-ach .medal {
+  width: 38px; height: 38px; border-radius: 12px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(var(--accent-rgb), 0.15); color: var(--accent);
+}
+.jos-ach .medal svg { width: 19px; height: 19px; }
+.jos-ach b { font-size: 0.88em; display: block; margin-bottom: 3px; }
+.jos-ach small { color: var(--text-dim); font-size: 0.78em; line-height: 1.45; display: block; }
+.jos-ach .xp { margin-left: auto; font-size: 0.75em; font-weight: 800; color: var(--accent); white-space: nowrap; }
+
+/* ---------- settings ---------- */
+.jos-set-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 4px; border-bottom: 1px solid var(--card-border); flex-wrap: wrap; }
+.jos-set-row .t b { display: block; margin-bottom: 3px; }
+.jos-set-row .t small { color: var(--text-dim); }
+.jos-swatches { display: flex; gap: 10px; }
+.jos-swatch {
+  width: 38px; height: 38px; border-radius: 50%; cursor: pointer; border: 3px solid transparent;
+  transition: transform 0.12s ease, border-color 0.15s ease;
+}
+.jos-swatch:hover { transform: scale(1.12); }
+.jos-swatch.on { border-color: #fff; box-shadow: 0 0 0 2px var(--c), 0 4px 14px rgba(0,0,0,0.4); }
+.jos-seg { display: flex; gap: 6px; background: var(--input-bg); border: 1px solid var(--card-border); border-radius: 999px; padding: 4px; }
+.jos-seg button {
+  border: 0; background: transparent; color: var(--text-dim); border-radius: 999px;
+  padding: 7px 16px; cursor: pointer; font-weight: 600; font-size: 0.86em;
+}
+.jos-seg button.on { background: rgba(var(--accent-rgb), 0.2); color: var(--accent); }
+
+/* ---------- help ---------- */
+.jos-kbd {
+  font-family: var(--mono); font-size: 0.8em; background: var(--input-bg);
+  border: 1px solid var(--card-border); border-bottom-width: 2px; border-radius: 7px;
+  padding: 2px 8px; white-space: nowrap;
+}
+.jos-help-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--card-border); }
+.jos-help-row .k { flex: 0 0 170px; }
+.jos-help-row .d { color: var(--text-dim); font-size: 0.9em; line-height: 1.55; }
+
+/* ---------- recruiter overlay ---------- */
+.jos-recruiter {
+  position: fixed; inset: 0; z-index: 160;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  background: rgba(2, 5, 10, 0.72);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  animation: jos-fade 0.2s ease;
+}
+@keyframes jos-fade { from { opacity: 0; } }
+.jos-recruiter-card {
+  width: min(520px, 100%); background: var(--win-bg); border: 1px solid var(--win-border);
+  border-radius: 22px; padding: 32px; box-shadow: var(--shadow-win); text-align: center;
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  animation: jos-win-in 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  max-height: calc(100vh - 40px); overflow-y: auto;
+}
+.jos-recruiter-card h2 { margin: 14px 0 6px; font-size: 1.5em; }
+.jos-recruiter-card .role { color: var(--accent); font-weight: 700; margin-bottom: 8px; }
+.jos-recruiter-card p { color: var(--text-dim); line-height: 1.6; font-size: 0.94em; }
+.jos-recruiter-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+.jos-recruiter-btns .jos-btn { justify-content: center; }
+
+/* ---------- first-run hint ---------- */
+.jos-hint {
+  position: absolute; z-index: 110; left: 130px; top: 60px;
+  background: var(--win-bg); border: 1px solid rgba(var(--accent-rgb), 0.4);
+  border-radius: 12px; padding: 10px 16px; font-size: 0.85em; color: var(--text);
+  box-shadow: var(--shadow-win); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  animation: jos-win-in 0.3s ease; max-width: 280px;
+}
+.jos-hint::before {
+  content: ""; position: absolute; left: -6px; top: 18px; width: 12px; height: 12px;
+  background: var(--win-bg); border-left: 1px solid rgba(var(--accent-rgb), 0.4); border-bottom: 1px solid rgba(var(--accent-rgb), 0.4);
+  transform: rotate(45deg);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  .jos-icons { top: 10px; left: 8px; }
+  .jos-icon { width: 76px; }
+  .jos-icon-glyph { width: 44px; height: 44px; border-radius: 12px; }
+  .jos-taskbar { bottom: 8px; padding: 6px 8px; gap: 4px; }
+  .jos-tb-btn { width: 42px; height: 42px; }
+  .jos-tray-clock .d { display: none; }
+  .jos-winbody { padding: 14px; }
+  .jos-form-row { grid-template-columns: 1fr; }
+  .jos-about-hero { flex-direction: column; text-align: center; }
+  .jos-start { bottom: 66px; }
+  .jos-skill .nm { width: 110px; }
+  .jos-skill .lv { width: 84px; }
+  .jos-recruiter-btns { grid-template-columns: 1fr; }
+}

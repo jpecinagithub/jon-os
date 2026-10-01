@@ -99,7 +99,7 @@ export function RecruiterOverlay() {
   return (
     <div className="jos-recruiter" onClick={() => setRecruiterOpen(false)}>
       <div className="jos-recruiter-card" onClick={(e) => e.stopPropagation()}>
-        <div className="jos-avatar" style={{ margin: '0 auto' }}>JP</div>
+        <img className="jos-avatar" src="./avatar.jpg" alt="Jon Peciña" style={{ margin: '0 auto' }} />
         <h2>{t('recruiter.hey')}</h2>
         <div className="role">{t('recruiter.role')}</div>
         <p>{t('recruiter.body')}</p>

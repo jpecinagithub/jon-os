@@ -132,6 +132,22 @@ html[data-theme="light"] *::-webkit-scrollbar-thumb { background: rgba(15,27,40,
   border-radius: var(--radius);
   padding: 18px;
 }
+.jos-feat {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  margin-bottom: 10px; color: var(--text); font-family: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.jos-feat:hover { border-color: var(--accent); transform: translateY(-1px); }
+.jos-feat h4 { margin: 0 0 4px; font-size: 1em; }
+.jos-feat p { margin: 0 0 8px; color: var(--text-dim); font-size: 0.92em; }
+.jos-feat .stack { color: var(--text-faint); font-size: 0.82em; }
+.jos-video-card { margin-top: 4px; }
+.jos-video-card h4 { margin: 0 0 10px; font-size: 1em; }
+.jos-video { width: 100%; border-radius: 10px; display: block; background: #000; max-height: 420px; }
+.jos-video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.jos-video-grid figure { margin: 0; }
+.jos-video-grid figcaption { margin-top: 8px; color: var(--text-dim); font-size: 0.88em; }
+@media (max-width: 640px) { .jos-video-grid { grid-template-columns: 1fr; } }
 
 .jos-input, .jos-textarea, .jos-select {
   width: 100%;
@@ -370,6 +386,7 @@ html[data-theme="light"] .jos-start-app .g { color: #fff; }
   color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.35);
   border: 3px solid rgba(var(--accent-rgb), 0.5);
   box-shadow: 0 8px 26px rgba(var(--accent-rgb), 0.35);
+  object-fit: cover;
 }
 .jos-about-name { margin: 0; font-size: 1.6em; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .jos-about-role { color: var(--accent); font-weight: 700; margin: 4px 0; }

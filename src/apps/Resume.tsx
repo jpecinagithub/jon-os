@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useOS } from '../os/store';
 import { I } from '../os/icons';
 
-type Tab = 'exp' | 'skills' | 'edu' | 'lang';
+type Tab = 'exp' | 'skills' | 'feat' | 'edu' | 'lang';
 
 export default function ResumeApp() {
   const { t } = useOS();
   const [tab, setTab] = useState<Tab>('exp');
-  const { printCV } = useOS();
+  const { printCV, openProject } = useOS();
   const tabs = t('resume.tabs') as Record<Tab, string>;
 
   return (
@@ -53,6 +53,18 @@ export default function ResumeApp() {
                 </div>
               ))}
             </div>
+          ))}
+        </div>
+      )}
+
+      {tab === 'feat' && (
+        <div>
+          {(t('resume.featured') as any[]).map((f, i) => (
+            <button key={i} className="jos-card jos-feat" onClick={() => openProject(f.slug)} title={f.name}>
+              <h4>{f.name}</h4>
+              <p>{f.desc}</p>
+              <div className="stack">{f.stack}</div>
+            </button>
           ))}
         </div>
       )}

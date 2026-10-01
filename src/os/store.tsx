@@ -290,25 +290,29 @@ export function OSProvider({ children }: { children: React.ReactNode }) {
     const L = langRef.current;
     const R = STR[L].resume;
     const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-    const expHtml = (R.exp as any[]).map((e) => `
-      <div class="item"><h3>${esc(e.title)}</h3><div class="meta">${esc(e.where)} · ${esc(e.when)}</div><p>${esc(e.desc)}</p></div>`).join('');
     const eduHtml = (R.edu as any[]).map((e) => `
       <div class="item"><h3>${esc(e.title)}</h3><div class="meta">${esc(e.place)}</div></div>`).join('');
     const skillHtml = (R.skillGroups as any[]).map((g) => `
       <h2>${esc(g.name)}</h2><p class="skills">${(g.skills as any[]).map((s) => esc(s[0])).join(' · ')}</p>`).join('');
+    const featHtml = ((R as any).featured as any[]).map((f) => `
+      <div class="item"><h3>${esc(f.name)}</h3><p>${esc(f.desc)}</p><div class="meta">${esc(f.stack)}</div></div>`).join('');
     const langHtml = (R.langs as any[]).map((l) => `<div class="item"><h3>${esc(l[0])}</h3><div class="meta">${esc(l[1])}</div></div>`).join('');
+    const T = (es: string, en: string) => (L === 'es' ? es : en);
     const html = `<!doctype html><html lang="${L}"><head><meta charset="utf-8"><title>Jon Peciña — CV</title>
 <style>body{font-family:Georgia,serif;color:#111;max-width:720px;margin:40px auto;padding:0 24px;line-height:1.55}
-h1{font-size:2em;margin:0} .role{color:#0d9488;font-weight:bold;margin:4px 0 2px} .contact{color:#555;font-size:.9em;margin-bottom:24px}
+h1{font-size:2em;margin:0} .role{color:#0d9488;font-weight:bold;margin:4px 0 2px} .contact{color:#555;font-size:.9em;margin-bottom:8px}
+.profile{font-size:.95em;margin:10px 0 0}
 h2{font-size:1.05em;text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid #0d9488;padding-bottom:4px;margin-top:28px}
 .item{margin:12px 0} .item h3{margin:0;font-size:1em} .meta{color:#555;font-size:.88em} p{margin:6px 0;font-size:.94em} .skills{font-size:.94em}
 @media print{body{margin:0}}</style></head><body>
 <h1>Jon Peciña</h1><div class="role">AI Engineer</div>
 <div class="contact">Logroño, España · UTC+1 · Remoto · jpecina@gmail.com · linkedin.com/in/jpecina · github.com/jpecinagithub</div>
-<h2>${L === 'es' ? 'Experiencia' : 'Experience'}</h2>${expHtml}
-<h2>${L === 'es' ? 'Habilidades' : 'Skills'}</h2>${skillHtml}
-<h2>${L === 'es' ? 'Educación' : 'Education'}</h2>${eduHtml}
-<h2>${L === 'es' ? 'Idiomas' : 'Languages'}</h2>${langHtml}
+<p class="profile">${esc((R as any).profile)}</p>
+<h2>${T('Habilidades', 'Skills')}</h2>${skillHtml}
+<h2>${T('Proyectos destacados', 'Featured Projects')}</h2>${featHtml}
+<h2>${T('Educación', 'Education')}</h2>${eduHtml}
+<h2>${T('Idiomas', 'Languages')}</h2>${langHtml}
+<h2>${T('Cómo trabajo', 'How I Work')}</h2><p>${esc((R as any).howIWork)}</p>
 <p class="meta" style="margin-top:28px">${esc(R.avail)}</p>
 </body></html>`;
     const w = window.open('', '_blank');

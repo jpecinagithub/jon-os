@@ -36,7 +36,7 @@ export default function ContactApp() {
   return (
     <div>
       <div style={{ display: 'flex', gap: 14, alignItems: 'center', marginBottom: 4 }}>
-        <span className="jos-avatar" style={{ width: 56, height: 56, fontSize: '1.2em' }}>JP</span>
+        <img className="jos-avatar" src="./avatar.jpg" alt="Jon Peciña" style={{ width: 56, height: 56 }} />
         <div>
           <h2 className="jos-h" style={{ margin: 0 }}>{t('contact.title')}</h2>
           <p className="jos-sub" style={{ margin: '4px 0 0', fontSize: '0.88em' }}>{t('contact.sub')}</p>

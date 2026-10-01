@@ -10,7 +10,7 @@ export default function AboutApp() {
   return (
     <div>
       <div className="jos-about-hero">
-        <div className="jos-avatar">JP</div>
+        <img className="jos-avatar" src="./avatar.jpg" alt="Jon Peciña" />
         <div>
           <h2 className="jos-about-name">
             Jon Peciña
@@ -34,6 +34,20 @@ export default function AboutApp() {
             </div>
           );
         })}
+      </div>
+
+      <div className="jos-card jos-video-card">
+        <h4>{t('about.videoTitle')}</h4>
+        <div className="jos-video-grid">
+          <figure>
+            <video className="jos-video" src="./about-climbing.mp4" controls preload="metadata" playsInline />
+            <figcaption>{t('about.videoCap1')}</figcaption>
+          </figure>
+          <figure>
+            <video className="jos-video" src="./about-biking.mp4" controls preload="metadata" playsInline />
+            <figcaption>{t('about.videoCap2')}</figcaption>
+          </figure>
+        </div>
       </div>
 
       <div className="jos-about-cta">

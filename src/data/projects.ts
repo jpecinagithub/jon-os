@@ -217,120 +217,6 @@ export const PROJECTS: Project[] = [
     shots: shot('erp3/login.webp', 'erp3/detalle.webp', 'erp3/idioma.webp'),
   },
   {
-    slug: 'ateneo',
-    featured: false,
-    title: 'ATENEO',
-    tagline: {
-      es: 'Trivial de cultura general en español, sin backend',
-      en: 'Spanish general-knowledge trivia, no backend',
-    },
-    url: null, // public Vercel URL serves stale code — link repo only
-    repo: 'https://github.com/jpecinagithub/ateneo',
-    status: 'code',
-    role: { es: 'Diseño y desarrollo completo', en: 'Full design & development' },
-    date: { es: '2026', en: '2026' },
-    problem: {
-      es: 'Un trivial de cultura general en español que funcione sin backend y sin conexión tras la primera carga, con preguntas que enseñen de verdad.',
-      en: 'A Spanish general-knowledge quiz that works with no backend and offline after first load, with questions that actually teach.',
-    },
-    did: {
-      es: [
-        '200 preguntas en español (Intermedio y Avanzado), con 4 opciones y explicación.',
-        'Modos exprés (10) y clásica (25), temporizador de 10 s y puntuación por velocidad y racha.',
-        'Ranking local top-10 y 8 preguntas de audio con motivos clásicos vía Web Audio.',
-        'Estética carbón oscuro + dorado champán, responsive móvil/tablet.',
-      ],
-      en: [
-        '200 Spanish questions (Intermediate & Advanced), 4 options + explanation each.',
-        'Express (10) and classic (25) modes, 10s timer, speed + streak scoring.',
-        'Local top-10 leaderboard and 8 audio questions with classical motifs via Web Audio.',
-        'Dark-charcoal + champagne-gold aesthetic, mobile/tablet responsive.',
-      ],
-    },
-    stack: ['Vite', 'React', 'Web Audio', 'localStorage'],
-    outcome: {
-      es: 'Juego completo sin backend: 200 preguntas verificadas con explicaciones y ranking persistente.',
-      en: 'Complete backend-free game: 200 verified questions with explanations and a persistent leaderboard.',
-    },
-    shots: shot('ateneo/shot1.png', 'ateneo/shot2.png'),
-  },
-  {
-    slug: 'memora',
-    featured: false,
-    title: 'MEMORA',
-    tagline: {
-      es: 'Entrena tu memoria a diario, jugando',
-      en: 'Train your memory daily, by playing',
-    },
-    url: null,
-    repo: 'https://github.com/jpecinagithub/memora',
-    status: 'code',
-    role: { es: 'Diseño y desarrollo completo', en: 'Full design & development' },
-    date: { es: 'Oct 2026', en: 'Oct 2026' },
-    problem: {
-      es: 'Entrenar la memoria a diario con sesiones cortas, medibles y sin fricción — marca e identidad 100% originales.',
-      en: 'Training memory daily with short, measurable, frictionless sessions — 100% original branding and identity.',
-    },
-    did: {
-      es: [
-        '9 juegos de memoria en español con sesiones de 2–4 minutos.',
-        'Dificultad adaptativa, rutina diaria determinista de 3 juegos y rachas.',
-        'Índice de memoria 0–100 con anillo de progreso, XP y niveles.',
-        'PWA instalable con service worker: funciona sin conexión.',
-      ],
-      en: [
-        '9 Spanish memory games with 2–4 minute sessions.',
-        'Adaptive difficulty, deterministic daily 3-game workout and streaks.',
-        '0–100 memory index with progress ring, XP and levels.',
-        'Installable PWA with service worker: works offline.',
-      ],
-    },
-    stack: ['React 18', 'TypeScript', 'Vite', 'PWA', 'Web Audio'],
-    outcome: {
-      es: '9 juegos verificados y pulidos; cero peticiones de red en ejecución.',
-      en: '9 verified, polished games; zero runtime network requests.',
-    },
-    shots: shot('memora/shot1.png', 'memora/shot2.png'),
-  },
-  {
-    slug: 'jobradar',
-    featured: false,
-    title: 'JOBRADAR',
-    tagline: {
-      es: 'Busca menos. Encuentra mejor.',
-      en: 'Search less. Find better.',
-    },
-    url: null,
-    repo: 'https://github.com/jpecinagithub/jobradar',
-    status: 'code',
-    role: { es: 'Diseño y desarrollo completo', en: 'Full design & development' },
-    date: { es: 'Oct 2026', en: 'Oct 2026' },
-    problem: {
-      es: 'Buscar empleo remoto sin perder horas entre portales: un índice que agregue ofertas reales con datos honestos, sin inventar salarios ni requisitos.',
-      en: 'Hunting remote jobs without losing hours across portals: an index aggregating real postings with honest data — never inventing salaries or requirements.',
-    },
-    did: {
-      es: [
-        'Indexa tableros ATS reales (Greenhouse, Lever, SmartRecruiters, Ashby) y páginas de carrera.',
-        'Filtros duros vs. blandos, puntuación explicable y deduplicación agresiva.',
-        'Kanban de candidaturas, empleos guardados y panel de analítica.',
-        'Bóveda local cifrada (AES-GCM) para fuentes privadas; jamás inventa datos.',
-      ],
-      en: [
-        'Indexes real ATS boards (Greenhouse, Lever, SmartRecruiters, Ashby) and career pages.',
-        'Hard vs. soft filters, explainable match scores, aggressive dedup.',
-        'Applications Kanban, saved jobs and analytics dashboard.',
-        'Encrypted local vault (AES-GCM) for private sources; never invents data.',
-      ],
-    },
-    stack: ['React', 'TypeScript', 'Tailwind', 'Zustand', 'Recharts'],
-    outcome: {
-      es: '11 tableros verificados indexados (786 ofertas, 0 campos inventados) con errores honestos.',
-      en: '11 verified boards indexed (786 jobs, 0 invented fields) with honest errors.',
-    },
-    shots: shot('jobradar/shot1.png', 'jobradar/shot2.png'),
-  },
-  {
     slug: 'pixel-quest',
     featured: false,
     title: 'PIXEL QUEST',
@@ -405,5 +291,45 @@ export const PROJECTS: Project[] = [
       en: 'Playable vertical slice; iterating mechanics with real playtesting.',
     },
     shots: shot('dustline/shot1.png', 'dustline/shot2.png'),
+  },
+  {
+    slug: 'ai-academy',
+    featured: true,
+    title: 'AI FUNDAMENTALS ACADEMY',
+    tagline: {
+      es: 'Portal de aprendizaje de IA: 28 módulos, 252 preguntas reales',
+      en: 'AI learning portal: 28 modules, 252 real questions',
+    },
+    url: 'https://ai-fundamentals-academy.vercel.app/',
+    repo: 'https://github.com/jpecinagithub/ai-fundamentals-academy',
+    status: 'shipped',
+    role: { es: 'Diseño y desarrollo completo', en: 'Full design & development' },
+    date: { es: 'Oct 2026', en: 'Oct 2026' },
+    problem: {
+      es: 'Quería un portal para aprender fundamentos de IA de verdad: contenido real y riguroso, práctica interactiva y seguimiento del progreso — sin backend y sin cuentas.',
+      en: 'I wanted a portal to genuinely learn AI fundamentals: real, rigorous content, interactive practice and progress tracking — with no backend and no accounts.',
+    },
+    did: {
+      es: [
+        '28 módulos con contenido redactado a mano y 252 preguntas validadas (9 por módulo, 4 opciones + explicación).',
+        '11 simuladores interactivos (tokenizador, temperatura, RAG, embeddings…), repaso de errores y examen final de 50 preguntas.',
+        'Constructor de proyecto final, mapa de conocimiento y glosario de 38 términos.',
+        'Bilingüe ES/EN completo con cambio instantáneo, modo oscuro y certificado PDF de finalización con código de verificación.',
+        'Todo en localStorage: progreso, rachas, XP y niveles sin servidor.',
+      ],
+      en: [
+        '28 modules with hand-written content and 252 validated questions (9 per module, 4 options + explanation).',
+        '11 interactive simulators (tokenizer, temperature, RAG, embeddings…), mistake review and a 50-question final exam.',
+        'Final project builder, knowledge map and a 38-term glossary.',
+        'Full ES/EN bilingual with instant switching, dark mode and a PDF completion certificate with verification code.',
+        'Everything in localStorage: progress, streaks, XP and levels with no server.',
+      ],
+    },
+    stack: ['Vite', 'React', 'TypeScript', 'jsPDF', 'localStorage'],
+    outcome: {
+      es: 'Portal público y desplegado: un curso completo de IA usable desde el primer clic, verificado módulo a módulo sin errores de consola.',
+      en: 'Public, deployed portal: a complete AI course usable from the first click, verified module by module with zero console errors.',
+    },
+    shots: shot('ai-academy/shot1.png', 'ai-academy/shot2.png', 'ai-academy/shot3.png'),
   },
 ];

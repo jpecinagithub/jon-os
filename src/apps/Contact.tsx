@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useOS } from '../os/store';
 import { I } from '../os/icons';
-import { EMAIL, GITHUB, LINKEDIN, WHATSAPP } from '../os/types';
+import { EMAIL, GITHUB, LINKEDIN } from '../os/types';
 
 const SUBJ_ICON = [I.chat, I.briefcase, I.calendar, I.bug];
 
@@ -44,7 +44,6 @@ export default function ContactApp() {
       </div>
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', margin: '14px 0' }}>
-        <a className="jos-btn small" href={WHATSAPP} target="_blank" rel="noreferrer"><I.whatsapp size={15} /> WhatsApp</a>
         <a className="jos-btn small" href={`mailto:${EMAIL}`}><I.mail size={15} /> Email</a>
         <a className="jos-btn small" href={LINKEDIN} target="_blank" rel="noreferrer"><I.linkedin size={15} /> LinkedIn</a>
         <a className="jos-btn small" href={GITHUB} target="_blank" rel="noreferrer"><I.github size={15} /> GitHub</a>

@@ -53,4 +53,3 @@ export const ACCENTS: Record<AccentId, { hex: string; rgb: string; ink: string }
 export const EMAIL = 'jpecina@gmail.com';
 export const LINKEDIN = 'https://www.linkedin.com/in/jpecina/';
 export const GITHUB = 'https://github.com/jpecinagithub';
-export const WHATSAPP = 'https://wa.me/34634605035';

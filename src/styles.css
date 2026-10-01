@@ -655,17 +655,33 @@ html[data-theme="light"] .jos-term { background: rgba(10, 16, 24, 0.94); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 640px) {
-  .jos-icons { top: 10px; left: 8px; }
-  .jos-icon { width: 76px; }
+  .jos-icons { top: 10px; left: 8px; right: 8px; flex-direction: row; flex-wrap: wrap; gap: 2px 0; }
+  .jos-icon { width: 72px; padding: 8px 2px 6px; }
   .jos-icon-glyph { width: 44px; height: 44px; border-radius: 12px; }
-  .jos-taskbar { bottom: 8px; padding: 6px 8px; gap: 4px; }
+  .jos-icon-label { font-size: 0.72rem; }
+  .jos-taskbar {
+    bottom: 8px; padding: 6px 8px; gap: 4px;
+    max-width: calc(100vw - 16px); overflow-x: auto;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .jos-taskbar::-webkit-scrollbar { display: none; }
+  .jos-taskbar > * { flex: 0 0 auto; }
   .jos-tb-btn { width: 42px; height: 42px; }
+  /* on mobile the taskbar keeps only the window switcher; pure quick-launch
+     buttons are redundant with the desktop icons and the start menu */
+  .jos-tb-launch, .jos-tb-sep-apps { display: none; }
   .jos-tray-clock .d { display: none; }
+  /* fullscreen windows: nearly opaque so the desktop doesn't bleed through */
+  .jos-win { background: rgba(7, 11, 19, 0.97); }
+  html[data-theme="light"] .jos-win { background: rgba(244, 247, 251, 0.98); }
+  /* the F11 hint is meaningless on touch devices */
+  .jos-lock-hint { display: none; }
   .jos-winbody { padding: 14px; }
   .jos-form-row { grid-template-columns: 1fr; }
   .jos-about-hero { flex-direction: column; text-align: center; }
-  .jos-start { bottom: 66px; }
+  .jos-start { bottom: 66px; max-height: calc(100dvh - 170px); overflow-y: auto; }
   .jos-skill .nm { width: 110px; }
   .jos-skill .lv { width: 84px; }
   .jos-recruiter-btns { grid-template-columns: 1fr; }
+  .jos-toasts { left: 8px; right: 8px; bottom: 70px; align-items: stretch; }
 }

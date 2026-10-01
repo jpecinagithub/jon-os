@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useOS } from './store';
 import { I } from './icons';
-import { EMAIL, GITHUB, LINKEDIN, WHATSAPP, AppId } from './types';
+import { EMAIL, GITHUB, LINKEDIN, AppId } from './types';
 import Wallpaper from './Wallpaper';
 import AboutApp from '../apps/About';
 import ProjectsApp from '../apps/Projects';
@@ -126,7 +126,6 @@ export function RecruiterOverlay() {
         <div className="jos-elsewhere" style={{ justifyContent: 'center', border: 0, marginTop: 4, paddingTop: 0 }}>
           <a className="jos-soc" href={LINKEDIN} target="_blank" rel="noreferrer" title="LinkedIn"><I.linkedin size={19} /></a>
           <a className="jos-soc" href={GITHUB} target="_blank" rel="noreferrer" title="GitHub"><I.github size={19} /></a>
-          <a className="jos-soc" href={WHATSAPP} target="_blank" rel="noreferrer" title="WhatsApp"><I.whatsapp size={19} /></a>
           <span className="jos-email-row">{EMAIL}<button onClick={copyEmail}>{t('about.copyEmail')}</button></span>
         </div>
       </div>
@@ -224,7 +223,7 @@ function Taskbar() {
       >
         <I.grid />
       </button>
-      <div className="jos-tb-sep" />
+      <div className="jos-tb-sep jos-tb-sep-apps" />
       {TRAY_APPS.map((app) => {
         const Icon = APP_ICON[app];
         const w = os.wins.find((x) => x.app === app);
@@ -232,7 +231,7 @@ function Taskbar() {
         return (
           <button
             key={app}
-            className={`jos-tb-btn${active ? ' active' : ''}`}
+            className={`jos-tb-btn${active ? ' active' : ''}${w ? '' : ' jos-tb-launch'}`}
             title={t(`apps.${app}`)}
             style={{ opacity: w ? 1 : 0.55 }}
             onClick={() => {

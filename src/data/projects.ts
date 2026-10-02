@@ -256,4 +256,42 @@ export const PROJECTS: Project[] = [
     },
     shots: shot('ai-academy/shot1.png', 'ai-academy/shot2.png', 'ai-academy/shot3.png'),
   },
+  {
+    slug: 'lumacut',
+    featured: false,
+    title: 'LumaCut',
+    tagline: {
+      es: 'Editor de vídeo online que funciona 100% en el navegador',
+      en: 'Online video editor that runs 100% in the browser',
+    },
+    url: 'https://video-editor-three-lake.vercel.app/',
+    repo: null,
+    status: 'shipped',
+    role: { es: 'Diseño y desarrollo completo', en: 'Full design & development' },
+    date: { es: '2026', en: '2026' },
+    problem: {
+      es: 'Editar vídeos sencillos no debería exigir instalar software ni subir material privado a un servidor.',
+      en: 'Editing simple videos should not require installing software or uploading private footage to a server.',
+    },
+    did: {
+      es: [
+        'Subida de MP4/MOV/WebM (botón, multiselección, arrastrar y soltar) con timeline visual: bloques proporcionales, reordenar, buscar y transiciones.',
+        'Fundidos reales entre clips (xfade de vídeo + acrossfade de audio) con previsualización fiel antes de exportar.',
+        '3 pistas de música procedural originales (Calm, Positive, Cinematic) con volúmenes independientes.',
+        'Exportación real a MP4 (H.264 + AAC, hasta 1080p) con ffmpeg.wasm: los archivos nunca salen del dispositivo.',
+      ],
+      en: [
+        'MP4/MOV/WebM upload (button, multi-select, drag & drop) with a visual timeline: proportional blocks, reorder, seek and transitions.',
+        'Real crossfades between clips (video xfade + audio acrossfade) with faithful preview before export.',
+        '3 original procedural music tracks (Calm, Positive, Cinematic) with independent volumes.',
+        'Real MP4 export (H.264 + AAC, up to 1080p) via ffmpeg.wasm: files never leave the device.',
+      ],
+    },
+    stack: ['React', 'TypeScript', 'Tailwind', 'ffmpeg.wasm', 'Web Audio'],
+    outcome: {
+      es: 'Editor completo en producción con proyecto demo que genera 3 clips al vuelo.',
+      en: 'Complete editor live in production with a demo project that generates 3 clips on the fly.',
+    },
+    shots: shot('clipcraft/shot1.png', 'clipcraft/shot2.png', 'clipcraft/shot3.png'),
+  },
 ];

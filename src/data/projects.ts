@@ -294,4 +294,42 @@ export const PROJECTS: Project[] = [
     },
     shots: shot('clipcraft/shot1.png', 'clipcraft/shot2.png', 'clipcraft/shot3.png'),
   },
+  {
+    slug: 'harness-lab',
+    featured: false,
+    title: 'HARNESS LAB',
+    tagline: {
+      es: 'Academia de ingeniería de harnesses para LLMs',
+      en: 'LLM Harness Engineering academy',
+    },
+    url: 'https://harness-lab-ten.vercel.app/',
+    repo: 'https://github.com/jpecinagithub/harness-lab',
+    status: 'shipped',
+    role: { es: 'Diseño y desarrollo completo', en: 'Full design & development' },
+    date: { es: '2026', en: '2026' },
+    problem: {
+      es: 'Saber usar un LLM no basta: hay que diseñar el software que lo rodea — el bucle principal, la memoria, las herramientas y MCP.',
+      en: 'Knowing how to use an LLM is not enough: you have to design the software around it — the main loop, memory, tools and MCP.',
+    },
+    did: {
+      es: [
+        '24 módulos en 6 niveles bilingües EN/ES: del bucle principal a desplegar un harness real.',
+        '192 preguntas de quiz con explicaciones y repaso de errores.',
+        '5 simuladores: stepper del bucle, sandbox JS editable, playground de memoria, diseñador de herramientas JSON-Schema y explorador MCP.',
+        'Harness funcional en el navegador con chat y traza por respuesta, más descargas: versión desktop y CLI.',
+      ],
+      en: [
+        '24 modules across 6 bilingual EN/ES levels: from the main loop to shipping a real harness.',
+        '192 quiz questions with explanations and mistake review.',
+        '5 simulators: loop stepper, editable JS sandbox, memory-budget playground, JSON-Schema tool designer and MCP explorer.',
+        'Working browser harness with chat and per-answer trace, plus downloads: desktop build and CLI.',
+      ],
+    },
+    stack: ['React', 'Vite', 'TypeScript', 'localStorage'],
+    outcome: {
+      es: 'Academia completa en producción, en EN/ES, con harness ejecutable en tres formatos: navegador, escritorio y terminal.',
+      en: 'Complete academy live in production, in EN/ES, with a runnable harness in three formats: browser, desktop and terminal.',
+    },
+    shots: shot('harness-lab/shot1.png', 'harness-lab/shot2.png', 'harness-lab/shot3.png'),
+  },
 ];
